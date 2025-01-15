@@ -113,21 +113,21 @@ Which one is more helpful right now? I'd say `all.equal()` at this point. It act
 
 1. What are the differences between the messy dataset and the original iris dataset?
 
-- Columns are out of order
-- Column names don't match
-- Data types are incorrect (all are character in messy, but numeric/factor in original)
-- Values in the species column have lots of problems (extra spaces, capitalization, typos, etc.)
-- Numbers have commas in them instead of periods
-- Numbers aren't rounded to the same number of decimal places
+- Columns are out of order TRUE
+- Column names don't match TRUE
+- Data types are incorrect (all are character in messy, but numeric/factor in original) TRUE
+- Values in the species column have lots of problems (extra spaces, capitalization, typos, etc.) TRUE
+- Numbers have commas in them instead of periods TRUE
+- Numbers aren't rounded to the same number of places TRUE
 
 2. What are the steps you need to take to clean the messy dataset? 
 
-- Rename columns
-- Reorder columns
-- Change data types: Species to factor, other columns to numeric
-- Correct values in Species column: remove extra spaces, fix typos, ensure consistent capitalization
-- Remove commas from numbers
-- Round numbers to the same number of decimal places (1)
+- Rename columns TRUE 
+- Reorder columns TRUE
+- Change data types: Species to factor, other columns to numeric TRUE
+- Correct values in Species column: remove extra spaces, fix typos, ensure consistent capitalization TRUE
+- Remove commas from numbers TRUE
+- Round numbers to the same number of decimal places (1) TRUE
 
 3. Are there any considerations for what order to do these steps in?
 
