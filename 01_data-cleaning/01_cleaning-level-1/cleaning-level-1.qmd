@@ -92,6 +92,13 @@ head(goal.mtcars)
 
 ```
 
+```{r}
+label: compare-datasets
+
+# Compare messy and original datasets through all.equal()
+all.equal(messy.mtcars, goal.mtcars)
+```
+
 
 QUESTIONS:
 
@@ -99,19 +106,24 @@ QUESTIONS:
 
 <!-- answer below -->
 Differences include the following: 
-1) Different headers (e.g., name, order, and capitalization)
-2) Decimal placement
-3) Amount of columns 
-4) Columns in messy.mtcars are <chr> while columns in goal.mtcars are <dbl> (excpet for model column)
-5) 
+1) Columns are out of order
+2) Column names do not match 
+3) Numbers are not rounded the same (Decimal placement) 
+4) Amount of columns are not the same (There are 14 in messy and 12 in original )
+5) Data types are incorrect (In messy are character while original are numeric (excpet for 'model' column))
+6) 
 
-
+NEED TO FINISH THIS QUESTION ABOVE (See if order matters same for question 2)
 
 2. What are the main issues you need to address in cleaning?
 
 <!-- answer below -->
 
-
+1) Reorder columns
+2) Rename columns 
+3) Round numbers to same decimal place (1)
+4) Remove unecessary columns  
+5) Change data types (----------)
 
 # Clean the Dataset
 
@@ -122,12 +134,32 @@ Differences include the following:
 #| label: make-cleaning-dataset
 
 # Create a dataset to work with during the cleaning process called "clean.mtcars"
-
+clean.mtcars <- messy.mtcars
 
 ```
 
 
+
+
+
+
+
+
+
 ## Clean columns/variables
+
+
+
+```{r}
+#| label: inspect-column-names 
+
+#Check the names of messy.mtcars
+colnames(messy.mtcars)
+
+#Check the names of goal.mtcars
+colnames(goal.mtcars)
+```
+
 
 
 ```{r}
@@ -135,8 +167,12 @@ Differences include the following:
 #| label: rename-columns
 
 # Rename columns to match the original mtcars dataset
+clean.mtcars <- messy.mtcars %>%
+# Format is rename(new_name = old_name)
+  rename('model' =  ' Car Model', 'mpg' = 'mpg (Miles/Gallon)', 'cyl' = 'cylinders', 'disp' = 'dsip', 'hp' = 'horsepower', 'drat' = 'drat', 'wt' = 'wt', 'qsec' = 'qsec', 'vs' = 'vs', 'am' = 'am', 'gear' = 'gearbox', 'carb' = 'carburetors')
 
-
+# Check column rename
+colnames(clean.mtcars)
 ```
 
 ```{r}
@@ -144,7 +180,12 @@ Differences include the following:
 #| label: reorder-columns
 
 # Reorder columns to match the original mtcars dataset
+clean.mtcars <- clean.mtcars %>%
+  relocate('model', 'mpg', 'cyl', 'disp', 'hp', 'drat', 'wt', 'qsec', 'vs', 'am', 'gear', 'carb')
 
+#Compare columns with header not all.equal because still have two additional columns so it will not help
+head(clean.mtcars)
+head(goal.mtcars)
 
 ```
 
@@ -153,7 +194,24 @@ Differences include the following:
 #| label: correct-data-types
 
 # Correct variable data types
+clean.mtcars.datatype <- clean.mtcars %>%
+  #Convert all columns except 'model' to numeric
+  mutate(
+   mpg = as.numeric(mpg),
+   cyl = as.numeric(cyl),
+   disp = as.numeric(disp),
+   hp = as.numeric(hp),
+   drat = as.numeric(drat),
+   wt = as.numeric(wt),
+   qsec = as.numeric(qsec),
+   vs = as.numeric(vs),
+   am = as.numeric(am),
+   gear = as.numeric(gear),
+   carb = as.numeric(carb)
+  )
 
+#Check varaible types
+head(clean.mtcars.datatype)
 ```
 
 ## Checkpoint 1
@@ -165,7 +223,7 @@ Differences include the following:
 # Inspect the current state of the dataset
 
 # Use all.equal() to check if clean.mtcars matches goal.mtcars
-
+all.equal(clean.mtcars.datatype, goal.mtcars)
 ```
 
 Questions:
@@ -174,7 +232,19 @@ Questions:
 
 <!-- answer below -->
 
+
+
+
+
+
 3. Install (if necessary) and load the `daff` package. In the code chunk below, use the `diff_data()` function to identify the differences between `clean.mtcars` and `goal.mtcars`. 
+
+
+
+
+
+
+
 
 ```{r}
 #| label: diff-data
