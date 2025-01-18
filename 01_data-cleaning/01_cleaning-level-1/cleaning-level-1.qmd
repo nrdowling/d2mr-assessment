@@ -266,8 +266,27 @@ Identifying specific value problems and cleaning them might take a little creati
 #| label: remove-unwanted-spaces
 
 # Remove unwanted whitespace in any columns required
-clean.mtcars.spaces <- goal.mtcars
+clean.mtcars.spaces <- theclean.mtcars %>%
+  mutate(
+    model = str_squish(model),
+    mpg = str_squish(mpg),
+    cyl = str_squish(cyl),
+    disp = str_squish(disp),
+    hp = str_squish(hp),
+    drat = str_squish(drat),
+    wt = str_squish(wt),
+    qsec = str_squish(qsec),
+    vs = str_squish(vs),
+    am = str_squish(am),
+    gear = str_squish(gear),
+    carb = str_squish(carb)
+  )
 
+#Check for spaces
+head(clean.mtcars.spaces)
+
+#Add to final
+finalclean.matcars <- clean.mtcars.spaces
 ```
 
 ```{r}
@@ -284,6 +303,10 @@ clean.mtcars.spaces <- goal.mtcars
 
 # Round numeric values
 
+clean.mtcars.round <- theclean.mtcars
+  mutate(
+    across(
+
 ```
 
 ```{r}
@@ -293,8 +316,14 @@ clean.mtcars.spaces <- goal.mtcars
 # Fix typos in model names
 ## Hint: This can be completed with a 6-line mutate() statement
 
+clean.mtcars.typos <- theclean.mtcars %>%
+  mutate(
+    model = str_replace_all(model, "Hornet SportAbout", "Hornet sportabout"))
 
+#Check for typos
+head(clean.mtcars.typos)
 
+finalclean.matcars <- clean.mtcars.typos
 ```
 
 ```{r}
@@ -302,8 +331,19 @@ clean.mtcars.spaces <- goal.mtcars
 #| label: remove-extra-column
 
 # Remove the extra column
+clean.mtcars.rmvcol <- theclean.mtcars %>%
+  select(-13, -14)
+  select (, 11), (, 12)
+
+#Check extra column
+clean.mtcars.rmvcol
+
+#Add to final
+finalclean.matcars <- clean.mtcars.rmvcol
 
 
+
+#FIX THE NUMBERS FIRST
 ```
 
 
@@ -318,6 +358,7 @@ clean.mtcars.spaces <- goal.mtcars
 
 # daff
 
+finalclean.matcars
 ```
 
 Questions:
