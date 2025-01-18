@@ -138,17 +138,7 @@ clean.mtcars <- messy.mtcars
 
 ```
 
-
-
-
-
-
-
-
-
 ## Clean columns/variables
-
-
 
 ```{r}
 #| label: inspect-column-names 
@@ -159,7 +149,6 @@ colnames(messy.mtcars)
 #Check the names of goal.mtcars
 colnames(goal.mtcars)
 ```
-
 
 
 ```{r}
@@ -238,13 +227,6 @@ Questions:
 
 
 3. Install (if necessary) and load the `daff` package. In the code chunk below, use the `diff_data()` function to identify the differences between `clean.mtcars` and `goal.mtcars`. 
-
-
-
-
-
-
-
 
 ```{r}
 #| label: diff-data
