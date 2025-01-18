@@ -98,6 +98,14 @@ QUESTIONS:
 1. What are the differences between the messy dataset and the original mtcars dataset?
 
 <!-- answer below -->
+Differences include the following: 
+1) Different headers (e.g., name, order, and capitalization)
+2) Decimal placement
+3) Amount of columns 
+4) Columns in messy.mtcars are <chr> while columns in goal.mtcars are <dbl> (excpet for model column)
+5) 
+
+
 
 2. What are the main issues you need to address in cleaning?
 
