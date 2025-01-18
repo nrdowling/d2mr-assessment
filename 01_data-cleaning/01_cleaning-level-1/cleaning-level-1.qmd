@@ -109,9 +109,8 @@ Differences include the following:
 1) Columns are out of order
 2) Column names do not match 
 3) Numbers are not rounded the same (Decimal placement) 
-4) Amount of columns are not the same (There are 14 in messy and 12 in original )
-5) Data types are incorrect (In messy are character while original are numeric (excpet for 'model' column))
-6) 
+4) Amount of columns are not the same (There are 14 in messy and 12 in goal )
+5) Data types are incorrect (In messy are character while goal are numeric (excpet for 'model' column))
 
 NEED TO FINISH THIS QUESTION ABOVE (See if order matters same for question 2)
 
@@ -199,8 +198,10 @@ clean.mtcars.datatype <- clean.mtcars %>%
    carb = as.numeric(carb)
   )
 
+theclean.mtcars <- clean.mtcars.datatype
+
 #Check varaible types
-head(clean.mtcars.datatype)
+head(theclean.mtcars)
 ```
 
 ## Checkpoint 1
@@ -212,7 +213,7 @@ head(clean.mtcars.datatype)
 # Inspect the current state of the dataset
 
 # Use all.equal() to check if clean.mtcars matches goal.mtcars
-all.equal(clean.mtcars.datatype, goal.mtcars)
+all.equal(theclean.mtcars, goal.mtcars)
 ```
 
 Questions:
@@ -221,8 +222,12 @@ Questions:
 
 <!-- answer below -->
 
+1) Numbers are not rounded the same (Decimal placement) 
+2) Amount of columns are not the same (There are 14 in clean and 12 in goal) 
+3) Numbers are not rounded the same (Decimal placement) 
 
 
+STILL NEED TO ANSWER THIS 
 
 
 
@@ -234,12 +239,15 @@ Questions:
 # Install and/or load the daff package if needed
 # install.package("daff")
 # library(daff)
+install.packages('daff')
+library(daff)
+
 
 # Use render_diff() and diff_data() to identify differences between clean.mtcars and goal.mtcars
 
-
+all.equal(theclean.mtcars, goal.mtcars)
+render_diff(diff_data(theclean.mtcars, goal.mtcars))
 ```
-
 How is this method of identifying data discrepancies different from `all.equal()`? Which do you find more helpful at this point?
 
 <!-- answer below -->
