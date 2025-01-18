@@ -93,7 +93,7 @@ head(goal.mtcars)
 ```
 
 ```{r}
-label: compare-datasets
+#| label: compare-datasets
 
 # Compare messy and original datasets through all.equal()
 all.equal(messy.mtcars, goal.mtcars)
@@ -252,6 +252,11 @@ How is this method of identifying data discrepancies different from `all.equal()
 
 <!-- answer below -->
 
+I personally find 
+
+
+
+
 ## Clean data values
 
 Identifying specific value problems and cleaning them might take a little creativity at times! Use the troubleshooting/debugging workflows we've discussed to get as far as you can.
@@ -261,7 +266,7 @@ Identifying specific value problems and cleaning them might take a little creati
 #| label: remove-unwanted-spaces
 
 # Remove unwanted whitespace in any columns required
-
+clean.mtcars.spaces <- goal.mtcars
 
 ```
 
