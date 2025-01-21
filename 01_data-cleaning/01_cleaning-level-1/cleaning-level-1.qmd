@@ -273,31 +273,28 @@ How is this method of identifying data discrepancies different from `all.equal()
 Identifying specific value problems and cleaning them might take a little creativity at times! Use the troubleshooting/debugging workflows we've discussed to get as far as you can.
 
 ```{r}
-
 #| label: remove-unwanted-spaces
 
 # Remove unwanted whitespace in any columns required
 theclean.mtcars.spaces <- finalclean.matcars %>%
   mutate(
-    model = str_squish(model),
-    mpg = str_squish(mpg),
-    cyl = str_squish(cyl),
-    disp = str_squish(disp),
-    hp = str_squish(hp),
-    drat = str_squish(drat),
-    wt = str_squish(wt),
-    qsec = str_squish(qsec),
-    vs = str_squish(vs),
-    am = str_squish(am),
-    gear = str_squish(gear),
-    carb = str_squish(carb)
-  )
-
-#Add to final
-finalclean.matcars.99 <- theclean.mtcars.spaces
-
-#Check for spaces
-head(finalclean.matcars.99)
+    across(everything(), str_squish
+           ) %>%
+      mutate(
+    model = as.character(model),
+    mpg = as.numeric(mpg),
+    cyl = as.numeric(cyl),
+    disp = as.numeric(disp),
+    hp = as.numeric(hp),
+    drat = as.numeric(drat),
+    wt = as.numeric(wt),
+    qsec = as.numeric(qsec),
+    vs = as.numeric(vs),
+    am = as.numeric(am),
+    gear = as.numeric(gear),
+    carb = as.numeric(carb)
+  ))
+head(theclean.mtcars.spaces)
 ```
 
 ```{r}
@@ -307,7 +304,7 @@ head(finalclean.matcars.99)
 # Impute missing values for cyl and hp
 
 #cyl impute
-clean.mtcars.impute.cyl.hp <- finalclean.matcars %>%
+clean.mtcars.impute.cyl.hp <- theclean.mtcars.spaces %>%
   ungroup() %>%
   mutate(
     cyl = case_when(
@@ -324,10 +321,10 @@ clean.mtcars.impute.cyl.hp <- finalclean.matcars %>%
       TRUE ~ hp
     )
   )
-finalclean.matcars.1
+
 #Add to final 
-finalclean.matcars.1 <- clean.mtcars.impute.cyl.hp
-all.equal(finalclean.matcars.1, goal.mtcars)
+clean.mtcars.impute.cyl.hp
+all.equal(clean.mtcars.impute.cyl.hp, goal.mtcars)
 ```
 
 ```{r}
@@ -336,7 +333,7 @@ all.equal(finalclean.matcars.1, goal.mtcars)
 
 # Round numeric values
 
-clean.mtcars.round <- finalclean.matcars.1 %>%
+clean.mtcars.round <- clean.mtcars.impute.cyl.hp %>%
   mutate(
     disp = round(disp, 0),
     drat = round(drat, 2),
@@ -344,9 +341,9 @@ clean.mtcars.round <- finalclean.matcars.1 %>%
   )
 
 #Add to final
-finalclean.matcars.2 <- clean.mtcars.round
-all_equal(finalclean.matcars.2, goal.mtcars)
-finalclean.matcars.2
+clean.mtcars.round
+all_equal(clean.mtcars.round, goal.mtcars)
+render_diff(diff_data(clean.mtcars.round, goal.mtcars))
 ```
 
 ```{r}
@@ -356,13 +353,13 @@ finalclean.matcars.2
 # Fix typos in model names
 ## Hint: This can be completed with a 6-line mutate() statement
 
-clean.mtcars.typos <- finalclean.matcars.2 %>%
+clean.mtcars.typos <- clean.mtcars.round %>%
   mutate(
     model = str_replace_all(model, "Hornet SportAbout", "Hornet sportabout"))
 
 #Check for typos
-finalclean.matcars.3 <- clean.mtcars.typos
-finalclean.matcars.3
+clean.mtcars.typos
+all_equal(clean.mtcars.typos, goal.mtcars)
 
 ```
 
@@ -371,20 +368,15 @@ finalclean.matcars.3
 #| label: remove-extra-column
 
 # Remove the extra column
-clean.mtcars.rmvecol <- finalclean.matcars.3 %>%
+clean.mtcars.rmvecol <- clean.mtcars.typos %>%
   select(-13, -14) %>%
   select (, 1:12)
   
 #Check extra column
-clean.mtcars.rmvcol
+clean.mtcars.rmvecol
 
 #Add to final
-finalclean.matcars.4 <- clean.mtcars.rmvecol
-
-finalclean.matcars.4
-
-
-#FIX THE NUMBERS FIRST
+clean.mtcars.rmvecol
 ```
 
 
@@ -396,12 +388,12 @@ finalclean.matcars.4
 # Inspect the dataset and compare to goal.mtcars
 
 # all.equal()
-all.equal(finalclean.matcars.4, goal.mtcars)
+all.equal(clean.mtcars.rmvecol, goal.mtcars)
 # daff
 library(daff)
-diff_data(finalclean.matcars.4, goal.mtcars)
-render_diff(diff_data(finalclean.matcars.4, goal.mtcars))
-finalclean.matcars.4
+diff_data(clean.mtcars.rmvecol, goal.mtcars)
+render_diff(diff_data(clean.mtcars.rmvecol, goal.mtcars))
+clean.mtcars.rmvecol
 ```
 
 Questions:
