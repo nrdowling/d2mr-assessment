@@ -107,22 +107,26 @@ QUESTIONS:
 <!-- answer below -->
 Differences include the following: 
 1) Columns are out of order
-2) Column names do not match 
-3) Numbers are not rounded the same (Decimal placement) 
-4) Amount of columns are not the same (There are 14 in messy and 12 in goal )
+2) Column names do not match (Whitespace and wording/abbreviations)
+3) Row names do no not match (e.g., capitalization)
+3) Numbers are not rounded the same (decimal placement) 
+4) Amount of columns are not the same (There are 14 in messy and 12 in goal)
 5) Data types are incorrect (In messy are character while goal are numeric (excpet for 'model' column))
 
-NEED TO FINISH THIS QUESTION ABOVE (See if order matters same for question 2)
+<!-- COMPLETED MOVE ON -->
 
-2. What are the main issues you need to address in cleaning?
+2. What are the main issues you need to address in cleaning? 
 
 <!-- answer below -->
 
 1) Reorder columns
 2) Rename columns 
-3) Round numbers to same decimal place (1)
+3) Rename rows
+3) Round numbers to same decimal place for each column
 4) Remove unecessary columns  
-5) Change data types (----------)
+5) Correct data types
+
+<!-- COMPLETED MOVE ON -->
 
 # Clean the Dataset
 
@@ -199,9 +203,10 @@ clean.mtcars.datatype <- clean.mtcars %>%
   )
 
 theclean.mtcars <- clean.mtcars.datatype
-
+finalclean.matcars <- theclean.mtcars
 #Check varaible types
-head(theclean.mtcars)
+head(finalclean.matcars)
+
 ```
 
 ## Checkpoint 1
@@ -213,7 +218,7 @@ head(theclean.mtcars)
 # Inspect the current state of the dataset
 
 # Use all.equal() to check if clean.mtcars matches goal.mtcars
-all.equal(theclean.mtcars, goal.mtcars)
+all.equal(finalclean.matcars, goal.mtcars)
 ```
 
 Questions:
@@ -222,14 +227,13 @@ Questions:
 
 <!-- answer below -->
 
-1) Numbers are not rounded the same (Decimal placement) 
-2) Amount of columns are not the same (There are 14 in clean and 12 in goal) 
-3) Numbers are not rounded the same (Decimal placement) 
+1) Columns disp, drat, and qsec have a mean relative difference, which can be fixed collectiv ely through rounding to the same decimal placement as the goal.mtcars
+2) Data impute is needed for columns cyl and hp. In theclean.mtcars there are 2 and 3 NA's for columns cyl and hp, respectively. Therefore, will need to reference goal.mtcars to know what values to place. 
+3) The two data sets are different (e.g., data frames vs tibble) 
+4) Amount of columns are not the same (There are 14 in clean and 12 in goal) 
+5) Column Model needs to be corrected 
 
-
-STILL NEED TO ANSWER THIS 
-
-
+<!-- COMPLETED MOVE ON -->
 
 3. Install (if necessary) and load the `daff` package. In the code chunk below, use the `diff_data()` function to identify the differences between `clean.mtcars` and `goal.mtcars`. 
 
@@ -245,17 +249,24 @@ library(daff)
 
 # Use render_diff() and diff_data() to identify differences between clean.mtcars and goal.mtcars
 
-all.equal(theclean.mtcars, goal.mtcars)
-render_diff(diff_data(theclean.mtcars, goal.mtcars))
+all.equal(finalclean.matcars, goal.mtcars)
+render_diff(diff_data(finalclean.matcars, goal.mtcars))
+
+#Fix the class difference (tibble to data frame)
+finalclean.matcars <- as.data.frame(finalclean.matcars)
+goal.mtcars <- as.data.frame(goal.mtcars)
+head(finalclean.matcars)
 ```
 How is this method of identifying data discrepancies different from `all.equal()`? Which do you find more helpful at this point?
 
 <!-- answer below -->
 
-I personally find 
+1) I find both to be helpful at this point. I can use the all.equal() to relaize that cyl and hp need to have imputed values; however, they do not tell me where. This then allows for me to go render_diff() and diff_data() to find which row in theclean.mtcars has the NA and what the value should be since it is being compared to goal.mtcars
+2) This may be controversial but I find again both to be helpful. I can use the all.equal() to find that three columns have mean relative difference (e.g., disp, drat, and qsec). Now I have an idea of what I am looking for when I go to render_diff() and diff_data(). This helps to show me what my current decimal placement is for theclean.mtcars and what it should be to achieve the same values as goal.mtcars. 
+3) Again I prefer both as all.equal() helps for me to know that there is a length mismatch while render_diff() and diff_data() helps to show where. 
+4) Lastly, the all.equal() helps to note that the model column does not match, but the render_diff() and diff_data() helps to show me what it should be. 
 
-
-
+<!-- COMPLETED MOVE ON -->
 
 ## Clean data values
 
@@ -266,7 +277,7 @@ Identifying specific value problems and cleaning them might take a little creati
 #| label: remove-unwanted-spaces
 
 # Remove unwanted whitespace in any columns required
-clean.mtcars.spaces <- theclean.mtcars %>%
+theclean.mtcars.spaces <- finalclean.matcars %>%
   mutate(
     model = str_squish(model),
     mpg = str_squish(mpg),
@@ -282,11 +293,11 @@ clean.mtcars.spaces <- theclean.mtcars %>%
     carb = str_squish(carb)
   )
 
-#Check for spaces
-head(clean.mtcars.spaces)
-
 #Add to final
-finalclean.matcars <- clean.mtcars.spaces
+finalclean.matcars.99 <- theclean.mtcars.spaces
+
+#Check for spaces
+head(finalclean.matcars.99)
 ```
 
 ```{r}
