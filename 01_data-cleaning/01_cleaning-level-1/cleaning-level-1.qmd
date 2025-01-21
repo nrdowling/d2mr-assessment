@@ -295,6 +295,28 @@ finalclean.matcars <- clean.mtcars.spaces
 
 # Impute missing values for cyl and hp
 
+#cyl impute
+clean.mtcars.impute.cyl.hp <- finalclean.matcars %>%
+  ungroup() %>%
+  mutate(
+    cyl = case_when(
+      is.na(cyl) & row_number() == 15 ~ 8,
+      is.na(cyl) & row_number() == 30 ~ 6,
+      TRUE ~ cyl
+      )
+    ) %>%
+  mutate(
+    hp = case_when(
+      is.na(hp) & row_number() == 9 ~ 95,
+      is.na(hp) & row_number() == 18 ~ 66,
+      is.na(hp) & row_number() == 27 ~ 91,
+      TRUE ~ hp
+    )
+  )
+finalclean.matcars.1
+#Add to final 
+finalclean.matcars.1 <- clean.mtcars.impute.cyl.hp
+all.equal(finalclean.matcars.1, goal.mtcars)
 ```
 
 ```{r}
@@ -303,10 +325,17 @@ finalclean.matcars <- clean.mtcars.spaces
 
 # Round numeric values
 
-clean.mtcars.round <- theclean.mtcars
+clean.mtcars.round <- finalclean.matcars.1 %>%
   mutate(
-    across(
+    disp = round(disp, 0),
+    drat = round(drat, 2),
+    qsec = round(qsec, 2)
+  )
 
+#Add to final
+finalclean.matcars.2 <- clean.mtcars.round
+all_equal(finalclean.matcars.2, goal.mtcars)
+finalclean.matcars.2
 ```
 
 ```{r}
@@ -316,14 +345,14 @@ clean.mtcars.round <- theclean.mtcars
 # Fix typos in model names
 ## Hint: This can be completed with a 6-line mutate() statement
 
-clean.mtcars.typos <- theclean.mtcars %>%
+clean.mtcars.typos <- finalclean.matcars.2 %>%
   mutate(
     model = str_replace_all(model, "Hornet SportAbout", "Hornet sportabout"))
 
 #Check for typos
-head(clean.mtcars.typos)
+finalclean.matcars.3 <- clean.mtcars.typos
+finalclean.matcars.3
 
-finalclean.matcars <- clean.mtcars.typos
 ```
 
 ```{r}
@@ -331,16 +360,17 @@ finalclean.matcars <- clean.mtcars.typos
 #| label: remove-extra-column
 
 # Remove the extra column
-clean.mtcars.rmvcol <- theclean.mtcars %>%
-  select(-13, -14)
-  select (, 11), (, 12)
-
+clean.mtcars.rmvecol <- finalclean.matcars.3 %>%
+  select(-13, -14) %>%
+  select (, 1:12)
+  
 #Check extra column
 clean.mtcars.rmvcol
 
 #Add to final
-finalclean.matcars <- clean.mtcars.rmvcol
+finalclean.matcars.4 <- clean.mtcars.rmvecol
 
+finalclean.matcars.4
 
 
 #FIX THE NUMBERS FIRST
@@ -355,10 +385,12 @@ finalclean.matcars <- clean.mtcars.rmvcol
 # Inspect the dataset and compare to goal.mtcars
 
 # all.equal()
-
+all.equal(finalclean.matcars.4, goal.mtcars)
 # daff
-
-finalclean.matcars
+library(daff)
+diff_data(finalclean.matcars.4, goal.mtcars)
+render_diff(diff_data(finalclean.matcars.4, goal.mtcars))
+finalclean.matcars.4
 ```
 
 Questions:
