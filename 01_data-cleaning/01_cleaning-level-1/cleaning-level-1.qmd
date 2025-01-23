@@ -262,8 +262,11 @@ How is this method of identifying data discrepancies different from `all.equal()
 <!-- answer below -->
 
 1) I find both to be helpful at this point. I can use the all.equal() to relaize that cyl and hp need to have imputed values; however, they do not tell me where. This then allows for me to go render_diff() and diff_data() to find which row in theclean.mtcars has the NA and what the value should be since it is being compared to goal.mtcars
+
 2) This may be controversial but I find again both to be helpful. I can use the all.equal() to find that three columns have mean relative difference (e.g., disp, drat, and qsec). Now I have an idea of what I am looking for when I go to render_diff() and diff_data(). This helps to show me what my current decimal placement is for theclean.mtcars and what it should be to achieve the same values as goal.mtcars. 
+
 3) Again I prefer both as all.equal() helps for me to know that there is a length mismatch while render_diff() and diff_data() helps to show where. 
+
 4) Lastly, the all.equal() helps to note that the model column does not match, but the render_diff() and diff_data() helps to show me what it should be. 
 
 <!-- COMPLETED MOVE ON -->
@@ -422,12 +425,47 @@ You can call it a day here, or continue with the optional cleaning tasks below. 
 *Optional:* Complete any number of the following tasks to further clean the dataset. Each task should be in its own code chunk with an appropriate label and clearly commented code:
 
 1. Create a new factor column `mpg_category` that categorizes `mpg` into "low", "medium", and "high" based on the distribution of `mpg` values.
+```{r}
+
+```
+
 2. Create a new factor column `wt_category` that categorizes `wt` into "light", "medium", and "heavy" based on the distribution of `wt` values, then reverse the order of the levels.
+
+```{r}
+
+```
+
 3. Create a new column `mpg_per_cyl` that calculates `mpg` divided by `cyl`.
+
+```{r}
+
+```
+
 4. Filter the data to only include cars with automatic transmissions. (Hint: `?mtcars` will show you useful info.)
+
+```{r}
+
+```
+
 5. Identify which variable would be better suited as a logical variable, then convert it to logical.
+
+```{r}
+
+```
+
 6. Sort the dataset by `mpg_category` then reverse alphabetically by `model` (so that models with the same `mpg_category` are sorted Z to A).
+
+```{r}
+
+```
+
 7. Write the cleaned dataset as a csv file called `clean-mtcars.csv`, then read the csv back in maintaining the correct data types.
+
+
+
+
+
+
 
 
 ## Unguided cleaning and transformation

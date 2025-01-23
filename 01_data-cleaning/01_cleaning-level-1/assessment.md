@@ -17,7 +17,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
 1.  create and maintain a repo with sensible organization and naming conventions
 
-    -   [ ] Assessment attempt
+    -   [] Assessment attempt
     -   [ ] Standard met
 
 2.  maintain an informative and up-to-date README.md
@@ -27,7 +27,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
 3.  integrate a GitHub repo with an R studio project, including .gitignore file
 
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 
 4.  effectively use version control
@@ -35,16 +35,16 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
     1.  creating frequent, informative commit messages
     2.  relying on document revisions rather than manually created new versions
 
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 
 ### R programming
 
 5.  find, install, require, and load R packages
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 6.  parse and define functions and arguments
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 7.  parse and write conditional statements
     -   [ ] Assessment attempt
@@ -53,16 +53,16 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 ### Tidyverse
 
 9.  **use `readr` functions to read in and write out data**
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 10. use `dplyr` and `tidyr` functions to transform data
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 11. use `stringr` functions to work with string variables
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 12. use `forcats` functions to work with factor variables
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 13. 
     -   [ ] Assessment attempt
@@ -86,7 +86,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 ### Data analysis
 
 17. perform simple descriptive analyses for numeric and factor data (e.g., mean, standard deviation, frequency tables)
-    -   [ ] Assessment attempt
+    -   [] Assessment attempt
     -   [ ] Standard met
 18. perform simple hypothesis testing analyses for numeric and factor data (e.g., t-tests, chi-square, linear regression)
     -   [ ] Assessment attempt
@@ -117,7 +117,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
     27. distributed throughout the manuscript
     28. chunk options
 
-    -   [ ] Assessment attempt
+    -   [x] Assessment attempt
     -   [ ] Standard met
 
 24. use code chunks to source .R scripts, load packages, set preferences, and read in data
