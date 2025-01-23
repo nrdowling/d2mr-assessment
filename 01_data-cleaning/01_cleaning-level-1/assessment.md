@@ -17,17 +17,17 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
 1.  create and maintain a repo with sensible organization and naming conventions
 
-    -   [] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 
 2.  maintain an informative and up-to-date README.md
 
-    -   [ ] Assessment attempt
+    -   [X] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 
 3.  integrate a GitHub repo with an R studio project, including .gitignore file
 
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 
 4.  effectively use version control
@@ -35,16 +35,16 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
     1.  creating frequent, informative commit messages
     2.  relying on document revisions rather than manually created new versions
 
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 
 ### R programming
 
 5.  find, install, require, and load R packages
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 6.  parse and define functions and arguments
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 7.  parse and write conditional statements
     -   [ ] Assessment attempt
@@ -53,16 +53,16 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 ### Tidyverse
 
 9.  **use `readr` functions to read in and write out data**
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 10. use `dplyr` and `tidyr` functions to transform data
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 11. use `stringr` functions to work with string variables
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 12. use `forcats` functions to work with factor variables
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 13. 
     -   [ ] Assessment attempt
@@ -117,7 +117,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
     27. distributed throughout the manuscript
     28. chunk options
 
-    -   [x] Assessment attempt
+    -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
 
 24. use code chunks to source .R scripts, load packages, set preferences, and read in data
