@@ -70,7 +70,7 @@ Below each learning objective is a list of general expectations for meeting that
 3.  Integrate a GitHub repo with an R studio project, including .gitignore file
 
     1.  All scripts run and all notebooks render if the repo is cloned to another location
-    2.  .gitingore comprehensively excludes unnecessary, private, and very large files and is be commeted appropriately
+    2.  .gitignore comprehensively excludes unnecessary, private, and very large files and is be commeted appropriately
 
         -   [ ] Objective attempt
         -   [ ] Unique objective attempt

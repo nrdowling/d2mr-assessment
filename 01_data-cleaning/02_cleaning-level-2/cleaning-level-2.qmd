@@ -12,7 +12,7 @@ In this Level 2 Cleaning assignment, you will work with a more complex dataset a
 
 # Instructions
 
-1. If you have not already done so, pull the latest changes from the `d2mr-assignments` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your fork of the repository.
+1. If you have not already done so, pull the latest changes from the `d2mr-assessment` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your fork of the repository.
 2. Open `cleaning-level-2.qmd` in RStudio and follow the instructions in the Setup section below to load and inspect the (original) `midwest` dataset. 
     - **Important:** Unlike Level 1, you will not be provided with a goal dataset to match. Instead, you will evaluate what cleaning tasks are necessary or useful *in principle*. You can reference the original `midwest` dataset, but ultimately you will need to decide what the "clean" version of the dataset should look like.
 3. Follow the guideline to identify and perform cleaning tasks on the `messy-midwest.csv` dataset.
@@ -190,7 +190,7 @@ To submit:
     2. Indicate which unique objectives you are meeting for the first time (if any)
     3. Complete any relevant open-ended items
 2. Push your changes to your centralized assignment repository on GitHub. 
-3. Confirm that Dr. Dowling nad your section TA are added as collaborators to your repository.
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
 4. Submit your work in your next open mini-project assignment by including the following information in the text box:
     1. The title of the assignment: "Level 2 Data Cleaning: Clean the midwest Dataset"
     2. A link to the **directory** for this assignment in your centralized assignment repo

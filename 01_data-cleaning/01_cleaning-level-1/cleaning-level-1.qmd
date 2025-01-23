@@ -6,13 +6,13 @@ title: 'Level 1 Data Cleaning: Clean the mtcars Dataset'
 
 The objective of this assignment is to practice cleaning and transforming a messy dataset using tidyverse functions. You will use skills like renaming and reordering columns, sorting rows, changing data types, mutating data, and using the stringr and forcats packages.
 
-In this Level 1 Cleaning assignment, you will work with a simple dataset and focus on basic data cleaning tasks. Most tasks are outlined in the assignment script. You may want to review the [Data Cleaning Walkthrough]() before you begin.
+In this Level 1 Cleaning assignment, you will work with a simple dataset and focus on basic data cleaning tasks. Most tasks are outlined in the assignment script. You may want to review the [Data Cleaning Walkthrough](https://github.com/nrdowling/d2mr-assessment/tree/main/01_data-cleaning/00_cleaning-walkthrough) before you begin.
 
-You may additionally or alternatively complete the [Level 2 Data Cleaning assignment](). In Level 2, you will work with a more complex dataset and perform additional cleaning tasks with less direct instruction. The Level 2 assignment has more opportunities to demonstrating meeting course standards than this Level 1 assignment and is recommended for those who are already comfortable with the tasks in this assignment.
+You may additionally or alternatively complete the [Level 2 Data Cleaning assignment](https://github.com/nrdowling/d2mr-assessment/tree/main/01_data-cleaning/01_cleaning-level-2). In Level 2, you will work with a more complex dataset and perform additional cleaning tasks with less direct instruction. The Level 2 assignment has more opportunities to demonstrating meeting course standards than this Level 1 assignment and is recommended for those who are already comfortable with the tasks in this assignment.
 
 # Instructions
 
-1. If you have not already done so, pull the latest changes from the `d2mr-assignments` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your fork of the repository.
+1. If you have not already done so, pull the latest changes from the `d2mr-assessment` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your fork of the repository.
 2. Open `cleaning-level-1.qmd` in RStudio and follow the instructions in the Setup section below to load and inspect the (clean) `goal.mtcars` dataset. 
     - **Important:** The provided code makes a small modification to the original `mtcars` dataset to create a `goal.mtcars` dataset. You will use this goal dataset as a reference to clean the `messy-mtcars.csv` dataset, not the true original.
 3. Follow the tasks described in the assignment script to clean the dataset and return it to its original state.
@@ -281,14 +281,14 @@ You can call it a day here, or continue with the optional cleaning tasks below. 
 
 To submit:
 
-1. Modify the `assessment.md` in this mini-project's directory:
+1. Add & modify the `assessment.md` in this mini-project's directory:
     1. Check off all objectives you believe you have demonstrated
     2. Indicate which objectives you are meeting for the first time (if any)
     3. Complete any relevant open-ended items
 2. Push your changes to your centralized assignment repository on GitHub. 
-3. Confirm that Dr. Dowling nad your section TA are added as collaborators to your repository.
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
 4. Submit your work in your next open mini-project assignment by including the following information in the text box:
-    1. The title of the assignment: "Assignment: Clean the mtcars Dataset (Level 1)"
+    1. The title of the assignment: "Level 1 Data Cleaning: Clean the mtcars Dataset"
     2. A link to the **directory** for this assignment in your centralized assignment repo
 
 
