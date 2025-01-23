@@ -462,12 +462,6 @@ You can call it a day here, or continue with the optional cleaning tasks below. 
 7. Write the cleaned dataset as a csv file called `clean-mtcars.csv`, then read the csv back in maintaining the correct data types.
 
 
-
-
-
-
-
-
 ## Unguided cleaning and transformation
 
 *Optional:* If you have the time and interest, continue transforming this dataset as you please. Create new columns based on the existing ones, reformat strings, try your hand at a regex replacement, summarize by groups (factor levels), visualize a simple relationship, or anything else you can think of. You can do this in addition to or instead of the suggested additional cleaning tasks above.
