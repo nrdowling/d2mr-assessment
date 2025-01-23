@@ -325,6 +325,7 @@ clean.mtcars.impute.cyl.hp <- theclean.mtcars.spaces %>%
 #Add to final 
 clean.mtcars.impute.cyl.hp
 all.equal(clean.mtcars.impute.cyl.hp, goal.mtcars)
+head(clean.mtcars.impute.cyl.hp)
 ```
 
 ```{r}
@@ -335,7 +336,7 @@ all.equal(clean.mtcars.impute.cyl.hp, goal.mtcars)
 
 clean.mtcars.round <- clean.mtcars.impute.cyl.hp %>%
   mutate(
-    disp = round(disp, 0),
+    disp = round(disp, 1),
     drat = round(drat, 2),
     qsec = round(qsec, 2)
   )
@@ -344,6 +345,7 @@ clean.mtcars.round <- clean.mtcars.impute.cyl.hp %>%
 clean.mtcars.round
 all_equal(clean.mtcars.round, goal.mtcars)
 render_diff(diff_data(clean.mtcars.round, goal.mtcars))
+head(clean.mtcars.round)
 ```
 
 ```{r}
@@ -352,11 +354,16 @@ render_diff(diff_data(clean.mtcars.round, goal.mtcars))
 
 # Fix typos in model names
 ## Hint: This can be completed with a 6-line mutate() statement
-
+ # Mutating old name to new name
 clean.mtcars.typos <- clean.mtcars.round %>%
   mutate(
-    model = str_replace_all(model, "Hornet SportAbout", "Hornet sportabout"))
-
+    model = str_replace_all(model, "Hornet SportAbout", "Hornet Sportabout"),
+    model = str_replace_all(model, "CAdillac Fleetwood", "Cadillac Fleetwood"),
+    model = str_replace_all(model, "ToyotA Corolla", "Toyota Corolla"),
+    model = str_replace_all(model, "T0yota Corona", "Toyota Corona"),
+    model = str_replace_all(model, "PontiAc Firebird", "Pontiac Firebird"),
+    model = str_replace_all(model, "L0tus Europa", "Lotus Europa"),
+    model = str_replace_all(model, "FerrAri Dino", "Ferrari Dino"))
 #Check for typos
 clean.mtcars.typos
 all_equal(clean.mtcars.typos, goal.mtcars)
@@ -377,6 +384,7 @@ clean.mtcars.rmvecol
 
 #Add to final
 clean.mtcars.rmvecol
+head(clean.mtcars.rmvecol)
 ```
 
 
@@ -393,7 +401,7 @@ all.equal(clean.mtcars.rmvecol, goal.mtcars)
 library(daff)
 diff_data(clean.mtcars.rmvecol, goal.mtcars)
 render_diff(diff_data(clean.mtcars.rmvecol, goal.mtcars))
-clean.mtcars.rmvecol
+head(clean.mtcars.rmvecol)
 ```
 
 Questions:
@@ -402,6 +410,7 @@ Questions:
 
 <!-- answer below -->
 
+Yes, they are identical.
 
 # Optional Cleaning Tasks
 
