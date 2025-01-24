@@ -1,0 +1,199 @@
+---
+title: 'Level 2 Data Cleaning: Clean the midwest Dataset'
+---
+
+# Objective
+
+The objective of this assignment is to practice cleaning and transforming a messy dataset using tidyverse functions. You will use skills like renaming and reordering columns, sorting rows, changing data types, mutating data, and using the stringr and forcats packages.
+
+This is the Level 2 Data Cleaning assignment. You may additionally or alternatively complete the [Level 1 Data Cleaning assignment](https://github.com/nrdowling/d2mr-assessment/tree/main/01_data-cleaning/01_cleaning-level-1), in which you will work with a simple dataset and focus on basic data cleaning tasks. The Level 1 assignment has more direct instruction and is recommended for those who are new to data cleaning.
+
+In this Level 2 Cleaning assignment, you will work with a more complex dataset and perform additional cleaning tasks with less direct instruction. The Level 2 assignment has more opportunities to demonstrating meeting course standards than this Level 1 assignment and is recommended for those who are already comfortable with the tasks in this assignment.
+
+# Instructions
+
+1. If you have not already done so, pull the latest changes from the `d2mr-assessment` repository to ensure you have the most up-to-date version of the assignment files. Confirm you are working in your fork of the repository.
+2. Open `cleaning-level-2.qmd` in RStudio and follow the instructions in the Setup section below to load and inspect the (original) `midwest` dataset. 
+    - **Important:** Unlike Level 1, you will not be provided with a goal dataset to match. Instead, you will evaluate what cleaning tasks are necessary or useful *in principle*. You can reference the original `midwest` dataset, but ultimately you will need to decide what the "clean" version of the dataset should look like.
+3. Follow the guideline to identify and perform cleaning tasks on the `messy-midwest.csv` dataset.
+4. At some points in this document you may come across questions or non-coding exercises. Answer these questions in the text of this .qmd document, immediately below the question.
+5. *Optional:* Continue to follow the instructions in the assignment script to clean the dataset above and beyond matching the original. 
+
+# Setup
+
+Run these chunks as written. Do not make changes to code except where noted if necessary.
+
+## Loading libraries and set seed
+
+```{r}
+#| label: setup
+library(tidyverse)
+set.seed(1234)
+```
+
+
+## Read in and inspect messy data
+
+Read in and inspect the messy dataset `messy-midwest.csv`.
+
+```{r}
+
+#| label: read-messy-data
+
+### LEAVE THIS CHUNK AS-IS ###
+
+# You *might* need to edit the filepath, but don't change anything else!
+
+# Read in messy-midwest.csv
+messy.midwest <- read_csv(
+  ########################################
+  "messy-midwest.csv", ## <-- THIS IS THE ONLY THING IN THIS CHUNK YOU CAN CHANGE IF NECESSARY
+  ########################################
+  trim_ws = FALSE, name_repair = "minimal", col_types = cols(.default = col_character()))
+
+# Inspect the structure and contents of the messy midwest dataset with head(), glimpse(), str(), and/or View()
+head(messy.midwest)
+glimpse(messy.midwest)
+str(messy.midwest)
+View(messy.midwest)
+
+```
+
+## Inspect the original midwest dataset
+
+```{r}
+#| label: inspect-original-data
+
+### LEAVE THIS CHUNK AS-IS ###
+
+# Load the original midwest dataset
+data(midwest)
+
+# View the documentation for the midwest dataset
+?midwest
+
+# Inspect the structure and contents original midwest dataset with head(), glimpse(), str(), and/or View()
+head(midwest)
+glimpse(midwest)
+str(midwest)
+View(midwest)
+
+```
+
+QUESTIONS:
+
+1. What are the differences between the messy dataset and the original midwest dataset?
+
+<!-- answer below -->
+
+2. What are the biggest issues you need to address in cleaning?
+
+<!-- answer below -->
+
+3. Are there any differences between the messy dataset and the original dataset that you do not need or want to address in cleaning? If so, why (not)?
+
+<!-- answer below -->
+
+4. Are there additional cleaning tasks you would like to perform beyond matching the original dataset? If so, what are they and why do you think they are important?
+
+<!-- answer below -->
+
+# Cleaning
+
+You may approach cleaning the dataset however you like based on how you identified problems above and how you think they should be prioritized.
+
+If you're not sure where to start, you can organize your cleaning into the following categories. **You do not need to follow this structure.** Feel free to delete these sections, rearrange them, or add new ones as needed. (FYI: When I cleaned this myself I loosely followed this structure, but there were some parts of my approach that could not have worked in this order.)
+
+You can additionally/alternatively construct your cleaning in a single pipeline in the last chunk.
+
+## Selecting, renaming, and reordering columns
+
+```{r}
+
+```
+
+## Changing data types
+
+```{r}
+
+```
+
+
+## Mutating data
+
+```{r}
+
+```
+
+
+## Using stringr and forcats
+
+```{r}
+
+```
+
+
+## Other cleaning tasks
+
+```{r}
+
+```
+
+
+
+
+## All cleaning in a single pipeline
+
+
+```{r}
+
+#| label: one-pipeline
+
+
+```
+
+
+
+# Reflection
+
+QUESTIONS:
+
+1. Is your dataset identical to `midwest`? If not, what is different? (Remember the functions `all.equal()` and `diff_data()` can help here.)
+
+<!-- answer below -->
+
+2. Did you make any choices to clean the data that resulted in the dataset not matching the original? Why did you make those choices?
+
+<!-- answer below -->
+
+3. Were there any cleaning steps -- whether necessary to recreate the original df or just because you wanted to do them -- that you weren't able to implement? If so, what were they and what more would you need to do/know to implement them? 
+
+<!-- answer below -->
+
+
+# Unguided cleaning and transformation
+
+*Optional:* If you have the time and interest, continue transforming this dataset as you please. Create new columns based on the existing ones, reformat strings, try your hand at a regex replacement, summarize by groups (factor levels), visualize a simple relationship, or anything else you can think of. To get you started, consider things like:
+
+1. **Exploratory Data Analysis:** Use the cleaned dataset to explore relationships between variables, create visualizations, and generate insights.
+2. **Data Transformation:** Create new variables, aggregate data, or reshape the dataset to prepare it for analysis.
+3. **Split, Merge, and Reshape:** Split the dataset into multiple datasets or merge it with other datasets using `join` functions to create a new dataset. Use `pivot_longer()` and `pivot_wider()` to reshape the data.
+4. **Informativity:** Consider the midwest data and its documentation. Clean/transform the dataframe into a format that is more informative, transparent, or easier to work with. For example, improve column naming conventions, create new (useful) variables, reduce redundancy, or eliminate variables that are not useful or documented.
+
+
+# Submission & Assessment
+
+To submit:
+
+1. Add an `assessment.md` file to this mini-project's directory:
+    1. Check off all objectives you believe you have demonstrated
+    2. Indicate which unique objectives you are meeting for the first time (if any)
+    3. Complete any relevant open-ended items
+2. Push your changes to your centralized assignment repository on GitHub. 
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
+4. Submit your work in your next open mini-project assignment by including the following information in the text box:
+    1. The title of the assignment: "Level 2 Data Cleaning: Clean the midwest Dataset"
+    2. A link to the **directory** for this assignment in your centralized assignment repo
+
+
+

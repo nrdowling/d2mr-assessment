@@ -1,0 +1,284 @@
+---
+title: "The Programmer's Groceries"
+format: html
+---
+
+
+>A programmer’s partner says, "Please go to the store and buy a carton of milk and if they have eggs, get six."
+>
+>The programmer returns with 6 cartons of milk.
+>
+>The partner sees this and exclaims, "Why on earth did you get six cartons of milk?"
+>
+>The programmer replies "They had eggs."
+
+This classic joke illustrates a common problem in programming: when humans talk to humans, much or most of the meaning we convey is implicit. We rely on shared understanding and context and have the ability to ask for and offer clarification.
+
+When humans talk to computers, we don't have the luxury of meaningful context.
+
+The reason this (arguably) works as a joke is that the partner's request would not (at least not usually) be confusing to a human listener. The ambiguity is not something most people would register as there at all until confronted with the unexpected result.
+
+
+## Attempt 1: the joke
+
+The partner asked for two things: milk and eggs. The programmer heard the request and interpreted it as two separate requests: one for milk and one for eggs. The programmer then made a decision based on the information they had: if eggs were available, they would buy six cartons of milk. 
+
+If the joke is that programmers think in code, what does that mental code look like?
+
+```{r}
+
+#| label: attempt-1-hard-coded
+
+#### The programmer's initial logic ####
+
+# Let's start simple: 
+# hard-defined eggs variable, conditional defines number of milk purchased,
+# result pasted into terminal
+# *not* a function
+
+eggs <- T # Whether there were eggs in the store -- change this to F or T to see how the paste0 function's return changes
+
+n.milk <- ifelse(eggs == TRUE, yes = 6, no = 1)
+
+paste0("Here's the milk. I bought ", n.milk, ".")
+
+
+```
+
+We can write that logic out as a function, which will allow us to run the same code with different values for eggs, since eggs are apparently ephemeral (at least as I write this in Jan 2025 mid-bird flu).
+
+```{r}
+
+#| label: attempt-1-function
+
+# Now write a function that does the same thing:
+# Instead of pre-defining eggs as TRUE, accept eggs as an argument that can change
+# each time we run the function
+# Note that defining a function does not return anything to the console (or output cell, if you're running this in a notebook)
+
+# What you will see is the addition of "shop" the this list of defined functions in our environment
+
+shop <- function(eggs) { # do they have eggs? T/F
+  if (eggs == TRUE) { # If there are eggs
+    n.milk <- 6 # Get 6 cartons of milk
+  } else { # If there are not eggs
+    n.milk <- 1 # Get 1 carton of milk
+  }
+  paste0("Here's the milk. I bought ", n.milk, ".")
+} 
+
+shop(TRUE) # Run the function by setting the one and only argument (eggs) to either TRUE or FALSE
+
+
+```
+
+
+### An environmental aside 
+
+It's worth paying attention to `n.milk`, which is the number of milk cartons purchased in both the hard coded example above and in this function. The variable is working differently depending on whether it is inside a function or not.
+
+Run the hard-coded example and the function a few times with different values for `eggs` to see how the output changes *and* how the value of `n.milk` changes. Is it what you expect?
+
+In the non-function version, we literally changed the value of `n.milk` each time we wanted to print the result. The value of the variable changes in the *global environment*, which is what you see if you look at the "environment" pane in RStudio.
+
+In the function version, `n.milk` is defined within the function and only exists within the function's environment, not globally. This is important because if you go to refer to `n.milk` later for some reason, you need to know where it was defined and where you're referencing. Unless you specify otherwise, you're going to be referencing the global environment.
+
+## Attempt 2: milk matters
+
+The programmer comes home with 6 cartons of milk, which is not great but hey at least they came home. What if they had eggs, but were out of milk? 
+
+In the first scenario, all the programmer's descisions are conditional on the presence or absence of eggs, and all the comes of those decisions only involve milk. 
+
+The poor programmer has hit a fatal error and is stuck at the store forever, because whether or not the eggs are in stock, they must always buy milk. 
+
+If we want to add this clarification here, the plain English version of the request could be: "Please go to the store and buy a carton of milk *if they have any* and if they have eggs, get six."
+
+```{r}
+
+#| label: attempt-2-hard-coded
+
+#### The second attempt ####
+# Our logic should care whether the store has milk, not just eggs.
+# Can't buy milk if they're out, no matter how many eggs are in stock!
+
+# A programmer’s partner says: ‘Please go to the store and buy a carton of milk *if they have any* and if they have eggs, get six.’
+
+# Before we make a function, we write some code that works with pre-defined arguments
+
+milk <- TRUE # Whether there was milk in the store
+eggs <- TRUE # Whether there were eggs in the store
+
+if (milk == TRUE && eggs == TRUE) { # If there’s milk AND eggs
+  n.milk <- 6 # Get 6 cartons of milk
+} else if (milk == FALSE && eggs == TRUE) { # If just eggs
+  n.milk <- 0 # Get 0 cartons of milk
+} else if (milk == TRUE && eggs == FALSE) { # If just milk
+  n.milk <- 1 # Get 1 carton of milk
+} else { # If any other condition
+  n.milk <- 0 # Get 0 cartons of milk
+}
+
+paste0("Here's the milk. I bought ", n.milk, ".")
+
+```
+
+Does it work as expected? Try different combinations of milk and eggs being in and out of stock to see how things change.
+
+If we have it working like we want, we can turn this conditional statement into a function.
+
+```{r}
+
+#| label: attempt-2-function
+
+# In "real" code we would wrap this function definition around the existing conditional
+# we just wrote rather than copying and pasting
+# For demo purposes we'll leave it as a simple conditional above and a function below
+# But notice how it's exactly the same code!!
+# (Note from ND: I took out a very bad pun here. You're welcome.)
+
+shop2 <- function(milk, eggs) { # do they have milk? eggs?
+ 
+  if (milk == TRUE && eggs == TRUE) { # If there’s milk AND eggs
+    n.milk <- 6 # Get 6 cartons of milk
+  } else if (milk == FALSE && eggs == TRUE) { # If just eggs
+    n.milk <- 0 # Get 0 cartons of milk
+  } else if (milk == TRUE && eggs == FALSE) { # If just milk
+    n.milk <- 1 # Get 1 carton of milk
+  } else { # If any other condition
+    n.milk <- 0 # Get 0 cartons of milk
+  }
+  
+  # If I want to see anything in the console when I run the function
+  # then I need to tell that to happen WITHIN the function
+  # So after the whole conditional has evaluated, I include a return() or paste()
+
+  return(n.milk) 
+  
+}
+```
+
+After confirming the function works as expected, we can run it with different values for milk and eggs to see how the output changes.
+
+### Case 1: The store has milk but not eggs
+
+```{r}
+
+#| label: attempt-2-case-1
+
+# Case 1: The store has milk but not eggs:
+case1 <- shop2(TRUE, FALSE)
+
+paste0("Here's the milk. I bought ", case1, ".")
+
+```
+
+The programmer returns with 1 carton of milk. 
+
+The partner says, "You didn't get any eggs?" 
+
+The programmer replies, "They didn't have any. Wait, hold on, you wanted eggs???" 
+
+The partner shrugs and says, "Doesn't matter."
+
+*In this case,* the desired outcome was acheived, but it was a bit lucky.
+
+### Case 2: The store has both milk and eggs
+
+```{r}
+
+#| label: attempt-2-case-2
+#| 
+# Case 2: The store has both milk and eggs
+case2 <- shop2(TRUE, TRUE)
+
+paste0("Here's the milk. I bought ", case2, ".")
+
+
+# ?Q?: ^^^ If you just run `n.milk` here in the global enviornment it isn't 
+# dependent on anything that happened within the shop2 function, but there IS 
+# a way to make it work that way -- figure out how!
+
+```
+
+
+The programmer returns with 6 cartons of milk.
+
+The partner sees this and exclaims "Why the heck did you buy six cartons of milk?"
+
+The programmer replies "They also had eggs."
+
+"So where are the eggs then?"
+
+The programmer exclaims, "Hold on, you wanted eggs?"
+
+*In this case,* the desired outcome was not acheived. The programmer bought 6 cartons of milk and no eggs. Although this function accounts for both milk and eggs as *input*, eggs are never part of the *output*.
+
+## Attempt 3: the charm?
+
+In some cases we got the expected output, but not always. We need to specify when and how the programmer should buy eggs, not just milk.
+
+So we make it even clearer in plain English, just completely throwing away the power of pragmatics: "Please go to the store and buy a carton of milk if they have any, and if they have eggs, get six eggs."
+
+```{r}
+
+#| label: attempt-3-function
+
+# We're good at functions now, so we'll construct the conditional within a function definition
+# instead of the copy/paste we did for attempt 2
+
+shop3 <- function(milk, eggs) {
+  if (milk == TRUE && eggs == TRUE) { # If there’s milk AND eggs
+    n.milk <- 1 # Get 1 carton of milk
+    n.eggs <- 6 # Get 6 eggs
+  } else if (milk == FALSE && eggs == TRUE) { # If just eggs (no milk)
+    n.milk <- 0 # Get 0 cartons of milk
+    n.eggs <- 6 # Get 6 eggs
+  } else if (milk == TRUE && eggs == FALSE) { # If just milk (no eggs)
+    n.milk <- 1 # Get 1 carton of milk
+    n.eggs <- 0 # Get 0 eggs
+  } else { # If any other condition (ie no milk or eggs)
+    n.milk <- 0 # Get 0 cartons of milk
+    n.eggs <- 0 # Get 0 eggs
+  }
+  paste0("I bought ", n.milk, " milk and ", n.eggs, " eggs.")
+}
+
+```
+
+### Case 1: The store has both milk and eggs
+
+This is the case that didn't behave as expected in attempt 2 because the programmer only came home with milk and no eggs.
+
+```{r}
+#| label: attempt-3-case-1
+
+# Case 1: The store has milk and eggss
+
+case3 <- shop3(TRUE, TRUE)
+
+```
+
+The programmer returns and says, "`r case3`"[^1]. The partner sees this and exclaims, _**"Let's make omelets!"**_
+
+[^1]: This is inline r code. If you render this notebook, you'll see the value of `case3` in the text. Assuming all has gone to plan, and that you ran the function with `TRUE, TRUE`, you should see "I bought 1 milk and 6 eggs."
+
+What happens in cases 2-4 (see slides), with different combinations of the store having milk and eggs? Try running the `shop3` function with different combinations and see what happens.
+
+## Epilogue
+
+This function works, but it's unwieldy. It's not very flexible, and it's not very readable. Our programmer friend would have a satisfactory grocery run, but they're having to go through quite a bit of mental gymnastics to get there as they run through each line of the funciton in their head.
+
+The function itself works, but it isn't very efficient. It's checking the same conditions multiple times. It's is not a big deal in this case, but could be a problem if the function were more complex.
+
+As an exercise, revise the conditional (or start from scratch!) to bring home the right groceries without so much redundancy.
+
+```{r}
+#| label: epilogue-revised-function
+
+# Write a function that does exactly the same thing as shop3, but with less redundancy
+
+```
+
+If you want, you can take it further. What if the partner asks for a carton of milk and a dozen eggs? What if they ask for a carton of milk and a dozen eggs, but only if the store has both? What if they ask for a carton of milk and a dozen eggs, but only if the store has both, and if the store has neither, they ask for a loaf of bread?
+
+Try out some simple functions as an exercise, or turn this into a mini-project!

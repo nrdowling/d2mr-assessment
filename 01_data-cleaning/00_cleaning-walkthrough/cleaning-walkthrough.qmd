@@ -1,5 +1,5 @@
 ---
-title: 'Data Cleaning: Walkthrough (iris)'
+title: 'Data Cleaning Walkthrough: Clean the iris Dataset'
 ---
 
 # Objective
@@ -751,3 +751,14 @@ render_diff(diff_data(sorted.iris, clean.iris.1pipe))
 ```
 
 Beautiful. 
+
+As an exercise, identify each place the ordering differs, then theorize the reasoning behind each case.
+
+**Omitted code.** Much (most?) of the cleaning process was just diagnosing the problems and confirming solutions. This is important work, but it's not necessary to include in the final script. The final script should be a concise, clear, and complete record of the data cleaning process.
+
+Identify each piece of code that was left out of the final script. This will include entire code chunks as well as small pieces of a section that actually did make it into the final script. What was the point of running any of that code to begin why? Why isn't it needed in the final script?
+
+**Other changes.** Other differences are smaller, like combining multiple lines of a mutate into just one with nesting or the `across()` selector function. Try to spot these as well and think through what's happening in each case. Ultimately, however, these are examples of how there are always multiple ways to do the same thing in R. You want to develop enough knowledge to be able to parse multiple methods, but when it comes to your own coding, choose the way that makes the most sense to you!
+
+**Notable unchanged mutate thing.** One thing I decided *not* to do in this script was combine all the mutating tasks into a single `mutate()` function. Another example of where context matters. The purpose of this document is to create a clear record of the cleaning process. Keeping the `mutate`s divided up and commented separately makes the pipeline easier to process. So in this case, being verbose but clear trumps being concise but potentially confusing.
+

@@ -1,0 +1,292 @@
+---
+title: "Level 1 Data Wrangling: Recreate a starwars Dataset"
+---
+
+
+# Objective
+
+The objective of this assignment is to practice transforming dataset using (primarily) tidyverse functions. You will use skills like renaming and reordering columns, sorting rows, changing data types, mutating data, and using the stringr and forcats packages.
+
+In this Level 1 Recreation assignment, you will load a built-in dataset then make changes to match the provided goal dataset. Most tasks are outlined in the assignment script. You will need to use your knowledge of the tidyverse to complete the tasks.
+
+You may additionally or alternatively complete the [Level 2 wrangling assignment](https://github.com/nrdowling/d2mr-assessment/tree/main/01_data-cleaning/recreate-level-2). In Level 2, you will work to match a more complex dataset and perform additional transformation tasks with less direct instruction. The Level 2 assignment has more opportunities to demonstrating meeting course standards than this Level 1 assignment and is recommended for those who are already comfortable with the tasks in this assignment.
+
+# Setup
+
+## Loading libraries and set seed
+
+```{r}
+#| label: setup
+library(tidyverse)
+set.seed(1234)
+```
+
+## Load your goal tibble to replicate
+
+Run this chunk to see what your end product should look like:
+
+```{r}
+
+#| label: load-goal-tibble
+
+sw.wrangled.goal <- read_csv("assessment/recreate-level-1/sw-wrangled.csv") %>% 
+   mutate(across(c(hair, gender, species, homeworld), factor)) # this is a quick-and-dirty fix to account for odd importing behavior
+
+# View in console
+sw.wrangled.goal 
+
+```
+
+Examine the structure of the df. Take note of data types and review factor levels.
+
+```{r}
+
+#| label: examine-structure
+
+# Examine the structure of the df
+
+str(sw.wrangled.goal)
+
+# Review levels for each factor variable
+
+## There are multiple ways to do this. Here are 3 possible options from simplest to most complex:
+
+### 1. Use the levels() function on each factor variable
+levels(sw.wrangled.goal$hair)
+levels(sw.wrangled.goal$gender)
+levels(sw.wrangled.goal$species)
+levels(sw.wrangled.goal$homeworld)
+
+### 2. Use the map() function from the purrr package to apply levels() to each factor variable
+sw.wrangled.goal %>% 
+  # Select only factor variables
+  select(where(is.factor)) %>% 
+  # use levels() to see the levels of each factor variable using map()
+  map(levels)
+
+### 3. Create a loop to apply levels() to each factor variable
+
+# Extract the names of each factor variable into a vector using tidyverse functions
+factor_vars <- sw.wrangled.goal %>% 
+  select(where(is.factor)) %>% 
+  names()
+
+# Create an empty list to store the levels of each factor variable
+factor_levels <- list()
+
+# Create a loop to apply levels() to each factor variable
+for (var in factor_vars) {
+  factor_levels[[var]] <- levels(sw.wrangled.goal[[var]])
+}
+
+# View the levels of each factor variable
+factor_levels
+
+```
+
+## Use the built-in starwars dataset to replicate the tibble above in a tbl called sw.wrangled
+
+Start by saving the `starwars` dataset to a new tbl called `sw.wrangled`. You will then make changes to this tbl to match the goal dataset.
+
+```{r}
+#| label: load-starting-data
+
+# Assign the starwars dataset to a new tbl called sw.wrangled
+
+```
+
+
+QUESTION:
+
+1. What is the point of duplicating the `starwars` dataset to a new tbl called `sw.wrangled` rather than working directly with the `starwars` dataset?
+
+<!-- answer below -->
+
+<!-- Answer: the point of duplicating the `starwars` dataset to a new tbl called `sw.wrangled` is to have a clean slate to work with. This way, you can make changes to the new tbl without affecting the original dataset. You can always easily refer back to the original or start from scratch if needed. -->
+
+# Dataset manipulation
+
+Follow the general instructions below to transform the `sw.wrangled` dataset to match the `sw.wrangled.goal` dataset. Where possible, use `tidyverse` functions to complete the tasks.
+
+If you get stuck, use comments to "hold space" for where you know code needs to go to achieve a goal you're not sure how to execute.
+
+## Identify differences
+
+Before you start making changes to the `sw.wrangled` dataset, identify the differences between the `sw.wrangled` and `sw.wrangled.goal` datasets. There are multiple ways to do this, but I suggest using the `all.equal()` function. 
+
+```{r}
+
+#| label: identify-differences
+
+# Use the all.equal() function to compare the two datasets
+
+
+# If the all.equal() function returns a message, read it carefully to understand the differences between the two datasets.
+
+```
+
+PLAN: Create a plan to address the differences between the `sw.wrangled` and `sw.wrangled.goal` datasets. What changes do you need to make? What functions will you use to make these changes?
+
+## Recreate goal data
+
+In this assignment, you'll make the necessary changes in individual steps in their own chunks, iteratively updating and saving `sw.wrangled`. In a real-world scenario, you would probably combine some or all of these steps into a single chunk. You'll have a chance to do that later. 
+
+**As you work,** add unique, informative chunk labels (using comment syntax: `#|: chunk-label`) and comments to explain your thought process and the steps you are taking.
+
+```{r}
+
+#| label: your-unique-informative-label-goes-here
+
+# Select only needed columns & rename height (to height_cm) and hair_color (to hair)
+
+
+```
+
+```{r}
+
+# Filter out any rows where height data is missing
+
+
+```
+
+```{r}
+
+# Break names into two columns (first_name, last_name); use first space " " as delimiter
+
+
+
+```
+
+```{r}
+# Change categorical variables (but currently character) to factors
+
+
+```
+
+```{r}
+
+# Create a second height column by converting cm to inches
+
+
+```
+
+```{r}
+# where there is no value in hair, use value "bald"
+
+
+
+```
+
+```{r}
+
+# create a logical variable that returns true if "brown" is anywhere in the string value for hair 
+
+
+
+```
+
+```{r}
+
+# create an initials column by concatenating the first characters of the first and last name
+
+
+
+```
+
+```{r}
+
+# Rearrange height_in and initials columns
+
+
+
+```
+
+```{r}
+
+# Sort by last_name and then (when last_name matches) by first_name 
+
+
+
+```
+
+
+## OPTIONAL: Combine steps into a single pipeline
+
+Combine all the steps above into a single pipeline. 
+
+QUESTION: What are the advantages and disadvantages of combining all the steps into a single pipeline in a single chunk?
+
+<!-- answer below -->
+
+<!-- INSTRUCTOR ANSWER: With only one pipe in one chunk, you can see the entire process from start to finish. This can make it easier to understand the flow of the data manipulation and to troubleshoot any issues that arise. Having it in just one chunk also makes it easier to run the entire process at once, rather than running each step individually.-->
+
+```{r}
+#| label: single-pipe
+
+
+```
+
+# Checkpoint
+
+Check that your `sw.wrangled` dataframe is identical to the goal dataframe using the `all.equal()` function.
+
+```{r}
+#| label: checkpoint
+
+# Use all.equal()
+
+
+```
+
+Use any returned information about mismatches to adjust your code as needed.
+
+QUESTION: Are there any issues you cannot resolve? If so, list out the issues and any potential solutions you can think of in plain English. Go back to the chunks where the problems arise (or where you suspect they arise) and add placeholder comments.
+
+<!-- answer below -->
+
+# OPTIONAL: Unguided cleaning and transformation
+
+*Optional:* If you have the time and interest, continue transforming this dataset as you please in a new dataframe called `sw.optional`. **DO NOT SAVE OVER YOUR `sw.wrangled` DATAFRAME.** Create new columns based on the existing ones, reformat strings, try your hand at a regex replacement, summarize by groups (factor levels), visualize a simple relationship, or anything else you can think of. You can do this in addition to or instead of the additional cleaning tasks above. 
+
+You can do these transformations one pipe/chunk or several. Either way, include appropriate chunk labels as well as comments to explain your thought process and the steps you are taking. 
+
+
+```{r}
+
+#| label: rename-me-to-something-sensible
+
+sw.optional <- sw.wrangled
+  # your code here
+
+```
+
+# OPTIONAL: Export/write your data to .csv
+
+If you would like to export your dataframe(s) to a .csv file, you can use the `write_csv()` function from the `readr` package. This is not required, but can demonstrate the skill.
+
+```{r}
+#| label: export-data
+
+# Write sw.wrangled to a .csv file
+
+# Write sw.optional to a .csv file
+
+
+```
+
+
+# Submission
+
+Before submitting, double check that your `sw.wrangled` dataframe matches the `sw.wrangled.goal` dataframe. If you optionally chose to continue transforming, that should be a *different dataframe.* 
+
+To submit:
+
+1. Add & modify the `assessment.md` in this mini-project's directory:
+    1. Check off all objectives you believe you have demonstrated
+    2. Indicate which objectives you are meeting for the first time (if any)
+    3. Complete any relevant open-ended items
+2. Push your changes to your centralized assignment repository on GitHub. 
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
+4. Submit your work in your next open mini-project assignment by including the following information in the text box:
+    1. The title of the assignment: "Level 1 Data Wrangling: Recreate a starwars Dataset"
+    2. A link to the **directory** for this assignment in your centralized assignment repo

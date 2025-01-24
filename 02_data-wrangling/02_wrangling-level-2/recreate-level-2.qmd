@@ -1,14 +1,14 @@
 ---
-title: "Assignment: Recreate this dataset (Level 2) - INSTRUCTOR KEY"
+title: "Level 2 Data Wrangling: Recreate a gapminder Dataset"
 ---
 
 # Objective
 
-This advanced data transformation assignment challenges you to practice **complex data wrangling** techniques using the tidyverse ecosystem. You will work with the `gapminder` dataset, applying sophisticated data manipulation skills with minimal guidance.
+This advanced data transformation assignment challenges you to practice **complex data wrangling** techniques using the tidyverse ecosystem. You will work with the `gapminder` dataset, applying more sophisticated data manipulation skills with minimal guidance.
 
 In this Level 2 Recreation assignment, you will load a built-in dataset then make changes to match the provided goal dataset. Few instructions are provided, challenging you to think critically and apply your problem solving skills to recreate the dataset independently.
 
-You may additionally or alternatively complete the [Level 1 recreation assignment](), which uses a simpler goal dataframe and provides more detailed instructions.
+You may additionally or alternatively complete the [Level 1 wrangling assignment](recreate-level-1.qmd), which uses a simpler goal dataframe and provides more detailed instructions.
 
 # Setup
 
@@ -34,9 +34,10 @@ Run this chunk to see what your end product should look like.
 #| label: load-goal-tibble
 
 ##### DO NOT EDIT THIS CHUNK #####
+## With the 1 exception of if you need to change the relative file path
 
-#gm.wrangled.goal <- read_csv("assessment/recreate-level-2/gm-wrangled-goal.csv")
-gm.wrangled.goal <- read_csv("gm-wrangled-goal.csv")
+gm.wrangled.goal <- read_csv("gm-wrangled-goal.csv", 
+    col_types = "ccfiicddfidddill")
 
 
 # View in console
@@ -238,12 +239,20 @@ If you would like to export your dataframe(s) to a .csv file, you can use the `w
 
 
 
-# Submission
+# Submission & Assessment
 
 Before submitting, double check that your `gm.wrangled` dataframe matches the `gm.wrangled.goal` dataframe using something like `all.equal()` or `diff_data()`. Remember that in this more complex recreation assignment, you may not be able to clear 100% of the differences you identify. You should aim to get as close as possible, and then address remaining discrepancies in the section above.
 
 If you optionally chose to continue transforming, that should be a *different dataframe.* 
 
-Edit the `assessment.md` file in this repo to indicate which course objectives you believe you have met.
+To submit:
 
-To submit, commit and push your work to GitHub classroom.
+1. Add & modify the `assessment.md` in this mini-project's directory:
+    1. Check off all objectives you believe you have demonstrated
+    2. Indicate which objectives you are meeting for the first time (if any)
+    3. Complete any relevant open-ended items
+2. Push your changes to your centralized assignment repository on GitHub. 
+3. Confirm that Dr. Dowling and your section TA are added as collaborators to your repository.
+4. Submit your work in your next open mini-project assignment by including the following information in the text box:
+    1. The title of the assignment: "Level 2 Data Wrangling: Recreate a gapminder Dataset"
+    2. A link to the **directory** for this assignment in your centralized assignment repo
