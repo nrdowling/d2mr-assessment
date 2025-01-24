@@ -34,9 +34,10 @@ Run this chunk to see what your end product should look like.
 #| label: load-goal-tibble
 
 ##### DO NOT EDIT THIS CHUNK #####
+## With the 1 exception of if you need to change the relative file path
 
-#gm.wrangled.goal <- read_csv("assessment/recreate-level-2/gm-wrangled-goal.csv")
-gm.wrangled.goal <- read_csv("gm-wrangled-goal.csv")
+gm.wrangled.goal <- read_csv("gm-wrangled-goal.csv", 
+    col_types = "ccfiicddfidddill")
 
 
 # View in console
