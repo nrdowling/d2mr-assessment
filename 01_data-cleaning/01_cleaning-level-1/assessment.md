@@ -19,6 +19,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
     -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
+    -   Grader comments: You will be able to check out objects in this domain when you create a repo from scratch.
 
 2.  maintain an informative and up-to-date README.md
 
@@ -42,7 +43,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
 5.  find, install, require, and load R packages
     -   [x] Assessment attempt (UNIQUE)
-    -   [ ] Standard met
+    -   [x] Standard met
 6.  parse and define functions and arguments
     -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
@@ -54,16 +55,18 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
 9.  **use `readr` functions to read in and write out data**
     -   [x] Assessment attempt (UNIQUE)
-    -   [ ] Standard met
+    -   [x] Standard met
 10. use `dplyr` and `tidyr` functions to transform data
     -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
+    -   Grader comments: I saw functions from `dplyr`, but not `tidyr`. You could use `pivot_longer()` to make the data tidy, for instance.
 11. use `stringr` functions to work with string variables
     -   [x] Assessment attempt (UNIQUE)
-    -   [ ] Standard met
+    -   [x] Standard met
 12. use `forcats` functions to work with factor variables
     -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
+    -   Grader comments: I didn't see any function from `forcats`.
 13. 
     -   [ ] Assessment attempt
     -   [ ] Standard met
@@ -119,6 +122,7 @@ Suggested standards for this **Cleaning Level 1** assessment are noted with an a
 
     -   [x] Assessment attempt (UNIQUE)
     -   [ ] Standard met
+    -   Grader comments: You will be able to meet this object when you create a .rmd or .qmd file from scratch.
 
 24. use code chunks to source .R scripts, load packages, set preferences, and read in data
 
