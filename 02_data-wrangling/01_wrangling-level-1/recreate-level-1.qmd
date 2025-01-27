@@ -29,7 +29,11 @@ Run this chunk to see what your end product should look like:
 
 #| label: load-goal-tibble
 
-sw.wrangled.goal <- read_csv("assessment/recreate-level-1/sw-wrangled.csv") %>% 
+#Problem with getting original working directory to work so will create getwd() and setwd() then place it
+getwd()
+setwd("/Users/michaelavalosjr./Downloads/Rstudio/d2mr-assessment-avalosmajr/02_data-wrangling/01_wrangling-level-1")
+
+sw.wrangled.goal <- read_csv("/Users/michaelavalosjr./Downloads/Rstudio/d2mr-assessment-avalosmajr/02_data-wrangling/01_wrangling-level-1/sw-wrangled.csv") %>% 
    mutate(across(c(hair, gender, species, homeworld), factor)) # this is a quick-and-dirty fix to account for odd importing behavior
 
 # View in console
